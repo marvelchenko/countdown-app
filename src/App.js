@@ -13,7 +13,7 @@ function App() {
     <>
     <div className='w-full h-[100vh] flex flex-wrap flex-col gap-4 items-center justify-center'>
       
-      <h1 className='text-2xl font-semibold text-white'>Countdown to the New Year 2025</h1>
+      <h1 className='text-2xl font-semibold text-center text-white'>Countdown to the New Year 2025</h1>
       <CountDown newYear={newYear} />
       < Loading />
     </div>
