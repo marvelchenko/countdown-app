@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Fireworks } from "fireworks-js";
+import audioFile from '../src/assets/fireworks.mp3';
+
 
 const CountDown = ({ newYear }) => {
   const [days, setDays] = useState(0);
@@ -20,7 +22,7 @@ const CountDown = ({ newYear }) => {
     const timerId = setInterval(() => {
         const now = getNigeriaTime(new Date().getTime());
         const distance = (newYear - now) / 1000;
-      if (distance > 0) {
+      if (distance <= 0) {
         const days = Math.floor(distance / 60 / 60 / 24);
         const hours = Math.floor((distance / 60 / 60) % 24);
         const mins = Math.floor((distance / 60) % 60);
@@ -51,9 +53,12 @@ useEffect(() => {
       fireworks.start();
 
       
-      const audio = new Audio("/assets/fireworks.mp3"); 
-      audio.play();
-
+      const audio = new Audio(audioFile); 
+      audio.play()
+        .catch(error => {
+          console.error('Audio playback failed:', error);
+    
+        });
       
       setTimeout(() => {
         fireworks.stop();
@@ -61,16 +66,15 @@ useEffect(() => {
     }
   }, [finished]);
 
+  
   if (finished) {
     return (
-      <div className="flex w-[40rem] flex-col justify-center text-center">
-        <h3 className="text-center text-4xl mb-4 font-bold text-green-200">
+      <div ref={fireworksContainer} className="relative w-full h-screen">
+        <h3 className="absolute inset-0 flex items-center justify-center text-center text-4xl font-bold text-green-200 z-10">
           🎉 Happy New Year! 🎉
         </h3>
-        <p className="  text-white text-sm ">
-          Wishing you a year filled with joy and endless opportunities. May 2025
-          bring you closer to your dreams and surround you with love and
-          success.
+        <p className="absolute bottom-[13rem] w-full text-center text-white text-sm z-10">
+          Wishing you a year filled with joy and endless opportunities.
         </p>
       </div>
     );
