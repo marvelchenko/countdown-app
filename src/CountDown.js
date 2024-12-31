@@ -22,7 +22,7 @@ const CountDown = ({ newYear }) => {
     const timerId = setInterval(() => {
         const now = getNigeriaTime(new Date().getTime());
         const distance = (newYear - now) / 1000;
-      if (distance <= 0) {
+      if (distance > 0) {
         const days = Math.floor(distance / 60 / 60 / 24);
         const hours = Math.floor((distance / 60 / 60) % 24);
         const mins = Math.floor((distance / 60) % 60);
