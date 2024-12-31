@@ -82,7 +82,7 @@ useEffect(() => {
 
   return (
     <>
-      <div className="flex gap-5">
+      <div className="flex flex-wrap gap-5">
         <div className="countdown">
           <div className="time">
             <div className="bg-white px-10 py-8 text-2xl">{days}</div>
